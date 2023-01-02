@@ -3,13 +3,12 @@ const puppeteer = require("puppeteer");
 const app = express();
 const port = 4000;
 
-app.get("/lihkg", (req, res)=>{
+app.get("/scraper/lihkg", (req, res)=>{
     async function test(){
         const browser =  await puppeteer.launch({ headless: false});
         const page = await browser.newPage();
         let data = [];
         try{
-
             page.on('response', async (response) => {   
                 if(response.url() == "https://lihkg.com/api_v2/thread/category?cat_id=16&page=1&count=60&type=now"){
                     console.log('XHR response received'); 
@@ -40,7 +39,7 @@ app.get("/lihkg", (req, res)=>{
     test();
 })
 
-app.get("/baby", (req, res)=>{
+app.get("/scraper/baby", (req, res)=>{
     async function get(){
         //Launch browser
         const browser = await puppeteer.launch();
@@ -72,7 +71,7 @@ app.get("/baby", (req, res)=>{
     get();
 })
 
-app.get("/hkd", (req, res)=>{
+app.get("/scraper/hkd", (req, res)=>{
     async function getHK(){
         const browser = await puppeteer.launch();
         const page = await browser.newPage();
